@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0D9460F31DC1C48000929B43 /* ActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9460F21DC1C48000929B43 /* ActionCreator.swift */; };
+		0D9460F61DC1D74600929B43 /* ActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9460F21DC1C48000929B43 /* ActionCreator.swift */; };
+		0D9460F71DC1D74700929B43 /* ActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9460F21DC1C48000929B43 /* ActionCreator.swift */; };
 		CA1C3FEC1B791CA20048126F /* ActionCreatorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3FEA1B7919390048126F /* ActionCreatorSpec.swift */; };
 		CA1C3FED1B791CA30048126F /* ActionCreatorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3FEA1B7919390048126F /* ActionCreatorSpec.swift */; };
 		CA37943C1B6F65BA000AE5F2 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CAEF5DB51B6D3951005684E2 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -661,6 +663,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D9460F61DC1D74600929B43 /* ActionCreator.swift in Sources */,
 				CAEF5DCE1B6D3D61005684E2 /* Action.swift in Sources */,
 				CAEEE11B1BFDC3C5000C1B09 /* ReduceStore.swift in Sources */,
 				CAFDEA181BFF59E500AF7A09 /* StoreBase.swift in Sources */,
@@ -723,6 +726,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D9460F71DC1D74700929B43 /* ActionCreator.swift in Sources */,
 				CAFDEA2E1BFF762300AF7A09 /* Store.swift in Sources */,
 				CAFDEA301BFF762700AF7A09 /* ReduceStore.swift in Sources */,
 				CAFDEA2C1BFF762200AF7A09 /* Dispatcher.swift in Sources */,
@@ -800,7 +804,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Debug;
@@ -828,7 +832,7 @@
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Release;
@@ -857,7 +861,7 @@
 				PRODUCT_NAME = SwiftFluxTests;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Debug;
@@ -880,7 +884,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.mog2dev.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SwiftFluxTests;
 				SDKROOT = macosx;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Release;
@@ -971,7 +975,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1017,7 +1021,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1098,7 +1102,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.mog2dev.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SwiftFluxTests;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1115,7 +1119,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.mog2dev.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SwiftFluxTests;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1137,7 +1141,7 @@
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -1160,7 +1164,7 @@
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};

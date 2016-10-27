@@ -8,7 +8,7 @@
 
 import Result
 
-public class ReduceStore<T: Equatable>: StoreBase {
+open class ReduceStore<T: Equatable>: StoreBase {
     public init(initialState: T) {
         self.initialState = initialState
         super.init()

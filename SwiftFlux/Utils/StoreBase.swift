@@ -8,7 +8,7 @@
 
 import Result
 
-public class StoreBase: Store {
+open class StoreBase: Store {
     private var dispatchTokens: [DispatchToken] = []
 
     public init() {}

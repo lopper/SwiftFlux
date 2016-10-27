@@ -2,9 +2,6 @@
 //  ActionCreator.swift
 //  SwiftFlux
 //
-//  Created by 江尻 幸生 on 2016/10/27.
-//  Copyright © 2016年 mog2dev. All rights reserved.
-//
 
 import Foundation
 
