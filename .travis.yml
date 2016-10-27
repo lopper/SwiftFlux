@@ -11,6 +11,7 @@ git:
 before_install:
   - git submodule update --init --recursive
   - brew update
+  - brew unlink carthage
   - brew install carthage
 
 script:
