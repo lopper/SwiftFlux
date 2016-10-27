@@ -12,48 +12,44 @@ import Result
 public typealias DispatchToken = String
 
 public protocol Dispatcher {
-    func dispatch<T: Action>(action: T, result: Result<T.Payload, T.Error>)
-    func register<T: Action>(type: T.Type, handler: (Result<T.Payload, T.Error>) -> ()) -> DispatchToken
-    func unregister(dispatchToken: DispatchToken)
-    func waitFor<T: Action>(dispatchTokens: [DispatchToken], type: T.Type, result: Result<T.Payload, T.Error>)
+    func dispatch<T: Action>(_ action: T, result: Result<T.Payload, T.ErrorType>)
+    func register<T: Action>(_ type: T.Type, handler: @escaping (Result<T.Payload, T.ErrorType>) -> ()) -> DispatchToken
+    func unregister(_ dispatchToken: DispatchToken)
+    func waitFor<T: Action>(_ dispatchTokens: [DispatchToken], type: T.Type, result: Result<T.Payload, T.ErrorType>)
 }
 
-public class DefaultDispatcher: Dispatcher {
+class DefaultDispatcher: Dispatcher {
+
     internal enum Status {
-        case Waiting
-        case Pending
-        case Handled
+        case waiting
+        case pending
+        case handled
     }
 
     private var callbacks: [DispatchToken: AnyObject] = [:]
 
-    public init() {}
-
-    deinit {
-        callbacks.removeAll()
+    func dispatch<T : Action>(_ action: T, result: Result<T.Payload, T.ErrorType>) {
+        dispatch(type: type(of: action), result: result)
     }
 
-    public func dispatch<T: Action>(action: T, result: Result<T.Payload, T.Error>) {
-        dispatch(action.dynamicType, result: result)
-    }
-
-    public func register<T: Action>(type: T.Type, handler: (Result<T.Payload, T.Error>) -> Void) -> DispatchToken {
-        let nextDispatchToken = NSUUID().UUIDString
+    func register<T : Action>(_ type: T.Type, handler: @escaping (Result<T.Payload, T.ErrorType>) -> ()) -> DispatchToken {
+        let nextDispatchToken = NSUUID().uuidString
         callbacks[nextDispatchToken] = DispatchCallback<T>(type: type, handler: handler)
+        print(callbacks)
         return nextDispatchToken
     }
 
-    public func unregister(dispatchToken: DispatchToken) {
-        callbacks.removeValueForKey(dispatchToken)
+    func unregister(_ dispatchToken: DispatchToken) {
+        callbacks.removeValue(forKey: dispatchToken)
     }
 
-    public func waitFor<T: Action>(dispatchTokens: [DispatchToken], type: T.Type, result: Result<T.Payload, T.Error>) {
+    func waitFor<T : Action>(_ dispatchTokens: [DispatchToken], type: T.Type, result: Result<T.Payload, T.ErrorType>) {
         for dispatchToken in dispatchTokens {
             guard let callback = callbacks[dispatchToken] as? DispatchCallback<T> else { continue }
             switch callback.status {
-            case .Handled:
+            case .handled:
                 continue
-            case .Pending:
+            case .pending:
                 // Circular dependency detected while
                 continue
             default:
@@ -62,7 +58,7 @@ public class DefaultDispatcher: Dispatcher {
         }
     }
 
-    private func dispatch<T: Action>(type: T.Type, result: Result<T.Payload, T.Error>) {
+    private func dispatch<T: Action>(type: T.Type, result: Result<T.Payload, T.ErrorType>) {
         objc_sync_enter(self)
 
         startDispatching(type)
@@ -73,29 +69,29 @@ public class DefaultDispatcher: Dispatcher {
         objc_sync_exit(self)
     }
 
-    private func startDispatching<T: Action>(type: T.Type) {
+    private func startDispatching<T: Action>(_ type: T.Type) {
         for (dispatchToken, _) in callbacks {
             guard let callback = callbacks[dispatchToken] as? DispatchCallback<T> else { continue }
-            callback.status = .Waiting
+            callback.status = .waiting
         }
     }
 
-    private func invokeCallback<T: Action>(dispatchToken: DispatchToken, type: T.Type, result: Result<T.Payload, T.Error>) {
+    private func invokeCallback<T: Action>(_ dispatchToken: DispatchToken, type: T.Type, result: Result<T.Payload, T.ErrorType>) {
         guard let callback = callbacks[dispatchToken] as? DispatchCallback<T> else { return }
-        guard callback.status == .Waiting else { return }
+        guard callback.status == .waiting else { return }
 
-        callback.status = .Pending
+        callback.status = .pending
         callback.handler(result)
-        callback.status = .Handled
+        callback.status = .handled
     }
 }
 
 private class DispatchCallback<T: Action> {
     let type: T.Type
-    let handler: (Result<T.Payload, T.Error>) -> ()
-    var status = DefaultDispatcher.Status.Waiting
+    let handler: (Result<T.Payload, T.ErrorType>) -> ()
+    var status = DefaultDispatcher.Status.waiting
 
-    init(type: T.Type, handler: (Result<T.Payload, T.Error>) -> ()) {
+    init(type: T.Type, handler: @escaping (Result<T.Payload, T.ErrorType>) -> ()) {
         self.type = type
         self.handler = handler
     }

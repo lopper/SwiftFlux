@@ -25,17 +25,17 @@ class TodoListViewController: UITableViewController {
         ActionCreator.invoke(TodoAction.Create(title: "New ToDo"))
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.todoStore.todos.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("TodoCell") as UITableViewCell!
-        cell.textLabel!.text = self.todoStore.todos[indexPath.row].title
-        return cell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoCell")
+        cell!.textLabel!.text = self.todoStore.todos[indexPath.row].title
+        return cell!
     }
 
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         ActionCreator.invoke(TodoAction.Delete(index: indexPath.row))
     }
 }

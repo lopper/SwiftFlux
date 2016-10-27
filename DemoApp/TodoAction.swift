@@ -13,7 +13,7 @@ import Result
 struct TodoAction {
     struct Fetch: Action {
         typealias Payload = [Todo]
-        func invoke(dispatcher: Dispatcher) {
+        func invoke(_ dispatcher: Dispatcher) {
             let todos = [
                 Todo(title: "ToDo 1"),
                 Todo(title: "ToDo 2"),
@@ -27,7 +27,7 @@ struct TodoAction {
         typealias Payload = Todo
         let title: String
 
-        func invoke(dispatcher: Dispatcher) {
+        func invoke(_ dispatcher: Dispatcher) {
             dispatcher.dispatch(self, result: Result(value: Todo(title: title)))
         }
     }
@@ -36,7 +36,7 @@ struct TodoAction {
         typealias Payload = Int
         let index: Int
         
-        func invoke(dispatcher: Dispatcher) {
+        func invoke(_ dispatcher: Dispatcher) {
             dispatcher.dispatch(self, result: Result(value: index))
         }
     }

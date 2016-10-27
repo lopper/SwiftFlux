@@ -11,17 +11,6 @@ import Result
 
 public protocol Action {
     associatedtype Payload
-    associatedtype Error: ErrorType = NSError
-    func invoke(dispatcher: Dispatcher)
-}
-
-public class ActionCreator {
-    private static let internalDefaultDispatcher = DefaultDispatcher()
-    public class var dispatcher: Dispatcher {
-        return internalDefaultDispatcher;
-    }
-
-    public class func invoke<T: Action>(action: T) {
-        action.invoke(self.dispatcher)
-    }
+    associatedtype ErrorType: Error = NSError
+    func invoke(_ dispatcher: Dispatcher)
 }
